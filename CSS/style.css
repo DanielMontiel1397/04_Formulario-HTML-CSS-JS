@@ -1,0 +1,358 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+html{
+    font-size: 62.5%;
+}
+
+body{
+    background-color: #003ba4;
+    font-family: 'Roboto', sans-serif;
+}
+
+main{
+    width: 100%;
+    
+    padding: 20px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#formulario-container{
+    width: 100%;
+    max-width: 800px;
+    margin: 50PX auto;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.fondo-container{
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    background-color: #184bb7;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px black;
+    position: relative;
+}
+
+.fondo-container div{
+    margin: 100px 40px;
+    color: white;
+    transition: all 500ms;
+}
+
+.fondo-container div p,
+.fondo-container div button{
+    margin-top: 30px;
+}
+
+.fondo-container div h3{
+    font-weight: 400;
+    font-size: 2.6rem;
+}
+
+.fondo-container div button{
+    width: 120px;
+    height: 30px;
+    border-radius: 5px;
+    background-color: #01929f;
+    border: 0.5px solid #275f7b;
+    color: white;
+    box-shadow: 5px 5px 10px #0d1425;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.fondo-container div button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.6s ease;
+    box-shadow: 0px 0px 10px #93b1bf;
+}
+
+/* FORMULARIOS */
+.contenedor-login-register{
+    width: 100%;
+    max-width: 380px;
+    position: absolute;
+    top: 63px;
+    left: 10px;
+    transition: left 1000ms cubic-bezier(0.175, 0.885, 0.320, 1.175);
+}
+
+
+.contenedor-login-register form{
+    width: 100%;
+    height: auto;
+    padding: 10px 20px;
+    background-color: #5e7bf0;
+    border-radius: 20px;
+}
+
+.contenedor-login-register form h1{
+    text-align: center;
+}
+
+.contenedor-login-register form .input-info{
+    width: 100%;
+    display: grid;
+    grid-template-columns:repeat(2,1fr);
+    grid-template-rows: auto auto auto;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    padding: 0 50px;
+}
+
+.contenedor-login-register form .input-info .label-container{
+    grid-row: 1;
+    grid-column: span 2;
+    display: flex;
+    justify-content: center;
+}
+
+.contenedor-login-register form .input-info .label-container i{
+    margin-right: 10px;
+}
+
+
+
+.contenedor-login-register form .input-info input{
+    grid-row: 2;
+    grid-column: span 2;
+    width: 100%;
+    text-align: center;
+    border-radius: 15px;
+    border: none;
+    padding: 5px 3px;
+}
+
+.contenedor-input-error{
+    border: 2px solid red;
+}
+
+.campo-obligatorio{
+    grid-row: 3;
+    grid-column: span 2;
+    text-align: center;
+    color: red;
+    font-size: 1rem;
+}
+
+.email-valido{
+    grid-row: 3;
+    grid-column: span 2;
+    text-align: center;
+    text-transform: uppercase;
+    color: rgb(10, 247, 10);
+    font-size: 1.2rem;
+}
+
+.contenedor-login-register form .input-info input:focus{
+    outline: none;
+    box-shadow: 0 0 5px #d6f5ff,
+    0 0 25px #d6f5ff;
+}
+
+.contenedor-login-register form .input-group{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contenedor-login-register form .input-group button{
+    width: 120px;
+    height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #2055a3;
+    border: 0.5px solid #275f7b;
+    box-shadow: 5px 5px 10px #0d1425;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.contenedor-login-register form .input-group button.edicion{
+    background-color: rgba(81, 223, 25, 0.945);
+}
+
+.contenedor-login-register form .input-group button:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: transform 0.6s ease;
+    box-shadow: 0px 0px 10px #93b1bf;
+}
+
+.div-editando{
+    margin: 10px 70px;
+    font-size: 1.6rem;
+    border: 2px solid white;
+    border-radius: 15px;
+    color: rgb(53, 204, 60);
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+}
+
+/*/////SECTION USUARIOS///////////*/
+.usuarios{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0px;
+}
+.usuarios h2{
+    font-size: 2.4rem;
+    padding: 5px;
+    margin: 0 auto;
+    width: 60%;
+    border: 2px solid white;
+    border-radius: 15px;
+    text-align: center;
+}
+#lista-usuarios{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 10px;
+    border: 3px solid black;
+    border-radius: 5px;
+}
+
+#lista-usuarios thead{
+    width: 100%;
+    border-bottom: 3px solid black;
+}
+
+#lista-usuarios  tr{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 0.5fr;
+    column-gap: 15px;
+    height: auto;
+    padding: 5px 0;
+}
+
+#lista-usuarios thead tr th{
+    width: 100%;
+    font-size: 1.4rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#lista-usuarios tbody{
+    width: 100%;
+}
+
+
+#lista-usuarios tbody tr td{
+    font-size: 1.4rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+/*Botones Editar - Eliminar */
+
+.botones-editar-eliminar{
+    display: flex;
+    flex-direction: column;
+}
+
+.editar-usuario,
+.eliminar-usuario{
+    width: 100px;
+    display: inline-block;
+    text-align: center;
+    border-radius: 15px;
+    padding: 3px 10px;
+    font-size: 1.4rem;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+}
+
+.editar-usuario{
+    background-color: gray;
+}
+
+.eliminar-usuario{
+    background-color: red;
+}
+
+/* RESPONSIVE DESIGN */
+ @media (max-width: 800px){
+
+    /* Responsive formularios */
+    #formulario-container{
+        margin: 20px 0;
+        row-gap: 20px;
+    }
+
+    #formulario-container .contenedor-login-register{
+        position: static;
+    }
+
+    #formulario-container .contenedor-login-register form .input-info{
+        padding: 0 10px;
+    }
+
+    #formulario-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .fondo-container{
+        max-width: 380px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .fondo-container .ingesar-login,
+    .fondo-container .ingesar-register{
+        margin: 10px auto;
+    }
+
+    .contenedor-login-register{
+        position: relative;
+        top: 0px;
+        left: 0px;
+    }
+
+    /* Responsive liste de usuarios */
+    .usuarios h2{
+        font-size: 2rem;
+        padding: 2px;
+        width: 90%;
+    }
+
+    #lista-usuarios  tr{
+        grid-template-columns: repeat(2,1fr) 0.3fr;
+    }
+
+    .editar-usuario,
+    .eliminar-usuario{
+        width: auto;
+    }
+
+ }
