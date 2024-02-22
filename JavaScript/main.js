@@ -334,6 +334,8 @@ correctamente y se presiona el botón "Registrar" */
     
         usuarioNuevoRegistrado.agregarUsuarioNuevo(usuario);
 
+
+
     } else{
         interface.mostrarAlerta('Editado Correctamente',"edicionCorrecta",'','');
 
@@ -344,10 +346,16 @@ correctamente y se presiona el botón "Registrar" */
         usuarioNuevoRegistrado.editarUsuarioExistente({...usuario});
 
         regresarModoNuevoUsuario();
-        organizarFormulario(true);
         
     }
     
+
+    if(window.innerWidth>800){
+
+        organizarFormulario(false);
+    }else{
+        organizarFormulario(true);
+    }
 
     limpiarObjeto();
     comprobarRegistro();
@@ -380,6 +388,13 @@ function crearListaHTML(usuarios){
 
 function eliminarUsuario(id){
     usuarioNuevoRegistrado.eliminarUsuaroExistente(id);
+
+    if(window.innerWidth>800){
+
+        organizarFormulario(false);
+    }else{
+        organizarFormulario(true);
+    }
 }
 
 function editarUsuario(id){
