@@ -149,6 +149,32 @@ main{
     font-size: 1rem;
 }
 
+.campo-obligatorio-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    margin: auto 0;
+    border: 3px solid red;
+    border-radius: 15px;
+    text-transform: uppercase;
+    padding: 5px;
+}
+
+.div-ingreso-correcto{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    margin: auto 0;
+    background-color: greenyellow;
+    border: 3px solid white;
+    border-radius: 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 5px;
+}
+
 .email-valido{
     grid-row: 3;
     grid-column: span 2;
@@ -172,8 +198,6 @@ main{
 }
 
 .contenedor-login-register form .input-group button{
-    width: 120px;
-    height: 30px;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
@@ -182,6 +206,7 @@ main{
     box-shadow: 5px 5px 10px #0d1425;
     text-transform: uppercase;
     font-weight: bold;
+    padding: 5px;
 }
 
 .contenedor-login-register form .input-group button.edicion{
@@ -214,42 +239,57 @@ main{
     align-items: center;
     margin-top: 0px;
 }
+
 .usuarios h2{
     font-size: 2.4rem;
-    padding: 5px;
-    margin: 0 auto;
-    width: 60%;
-    border: 2px solid white;
-    border-radius: 15px;
-    text-align: center;
+    width: 75%;
+    height: 40px;
+    border: 3px solid #21358b;
+    border-radius: 5px;
+    background-color: #3c4ba4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
+
 #lista-usuarios{
+    width: 75%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    margin-top: 10px;
-    border: 3px solid black;
+    margin-top: 5px;
+    border: 3px solid #21358b;
     border-radius: 5px;
 }
 
 #lista-usuarios thead{
     width: 100%;
-    border-bottom: 3px solid black;
+}
+
+#lista-usuarios thead tr{
+    background-color: #3c4ba4;
+    color: white;
+    letter-spacing: 2px;
 }
 
 #lista-usuarios  tr{
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 0.5fr;
+    grid-template-columns: 30% 35% 1fr;
     column-gap: 15px;
     height: auto;
-    padding: 5px 0;
+    padding: 5px 15px 5px 0;
+    background-color: #5661bd;
 }
 
 #lista-usuarios thead tr th{
     width: 100%;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     text-align: center;
+    text-transform: uppercase;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -265,8 +305,13 @@ main{
     text-align: center;
     display: flex;
     justify-content: center;
+    row-gap: 5px;
     align-items: center;
     color: white;
+}
+
+#lista-usuarios tbody tr{
+    border-top: 2px solid #21358b;
 }
 
 /*Botones Editar - Eliminar */
@@ -287,10 +332,12 @@ main{
     text-decoration: none;
     color: white;
     cursor: pointer;
+    box-shadow: 5px 5px 10px #0d1425;
+    border: none;
 }
 
 .editar-usuario{
-    background-color: gray;
+    background-color: #0a6890;
 }
 
 .eliminar-usuario{
@@ -346,13 +393,21 @@ main{
         width: 90%;
     }
 
-    #lista-usuarios  tr{
-        grid-template-columns: repeat(2,1fr) 0.3fr;
+    #lista-usuarios{
+        width: 100%;
     }
+
+    #lista-usuarios  tr{
+        grid-template-columns: 25% 45% 1fr;
+        column-gap: 5px;
+        word-wrap: break-word;
+        padding: 5px 0;
+    }
+
 
     .editar-usuario,
     .eliminar-usuario{
-        width: auto;
+        width: 50px;
     }
 
  }

@@ -97,11 +97,12 @@ function organizarFormulario(responsive){
             elemento.innerHTML = `<i class="fa-solid fa-x"></i>`;
         });
         
-
-        if(formularioInicioDisplay === 'block'){
-            containerInicio.style.display = 'none';
-        } else if(formularioRegistroDisplay === 'block'){
-            containerRegister.style.display = 'none';
+        if(window.innerWidth<800){
+            if(formularioInicioDisplay === 'block'){
+                containerInicio.style.display = 'none';
+            } else if(formularioRegistroDisplay === 'block'){
+                containerRegister.style.display = 'none';
+            }
         }
 
     }

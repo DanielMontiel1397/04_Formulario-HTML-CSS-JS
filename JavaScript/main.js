@@ -14,10 +14,13 @@ const inputRegisterPassword2 = document.querySelector('#password2-register');
 
 const imprimirListaHTML = document.querySelector('#lista-usuarios tbody');
 
-
+//Selectores input "Login"
+const inputLoginEmail = document.querySelector('#email-inicio');
+const inputLoginPassword = document.querySelector('#password-inicio');
 
 //Selectores botones
 const btnRegistrarUsuario = document.querySelector('#registrar-usuario');
+const btnIniciarLogin = document.querySelector('#button-ingresar');
 
 //OBJETO
 const nuevoUsuario = {
@@ -47,6 +50,14 @@ class UsuariosRegistrados{
         this.usuarios = this.usuarios.map(usuarios => usuarios.id === usuario.id ? usuario : usuarios);
         crearListaHTML(this.usuarios);
     }
+
+    iniciarSesionUsuario(usuario,password){
+        if(usuario.password === password){
+            ingresoCorrecto(usuario.nombre);
+        } else{
+            errorPassword();
+        }
+    }
 }
 
 
@@ -73,7 +84,33 @@ class Interface{
             formularioRegistro.appendChild(divMensaje);
             setTimeout(()=>{
                 divMensaje.remove();
-            },5000);
+            },3000);
+            return;
+        }
+
+        if(tipo === 'ingresoCorrecto'){
+            console.log('onichan');
+            const divMensaje = document.createElement('p');
+            divMensaje.textContent = mensaje;
+            divMensaje.classList.add('div-ingreso-correcto');
+            inputParent.appendChild(divMensaje);
+
+            setTimeout(()=>{
+                divMensaje.remove();
+            },3000);
+            return;
+        }
+
+        if(tipo==='loginError'){
+            console.log('aquiestamos');
+            const divMensaje = document.createElement('p');
+            divMensaje.textContent = mensaje;
+            divMensaje.classList.add('campo-obligatorio-login');
+            inputParent.appendChild(divMensaje);
+
+            setTimeout(()=>{
+                divMensaje.remove();
+            },3000);
             return;
         }
 
@@ -85,7 +122,7 @@ class Interface{
         
         if(tipo==='error'){
             mensajeError.classList.add('campo-obligatorio');
-            input.style.border = '1px solid red';
+            //input.style.border = '1px solid red';
         } 
         
         if(tipo==='valido'){
@@ -179,7 +216,7 @@ function eventListers(){
     inputRegisterPassword2.addEventListener('input',validarFormulario);
 
     btnRegistrarUsuario.addEventListener('click',agregarNuevoUsuario);
-
+    btnIniciarLogin.addEventListener('click',iniciarSesion);
 }
 
 //FUNCIONES
@@ -228,6 +265,7 @@ function validarFormulario(e){
         if(valorInput != inputRegisterPassword2.value){
             interface.mostrarAlerta('Las contraseñas no coinciden','error',inputRegisterPassword2.parentElement,inputRegisterPassword2);
             nuevoUsuario[e.target.name] = '';
+            comprobarRegistro();
             return;
         } else{
             interface.mostrarAlerta('Las contraseñas coinciden','correcto',inputRegisterPassword2.parentElement,inputRegisterPassword2);
@@ -241,6 +279,7 @@ function validarFormulario(e){
         if(inputRegisterPassword.value != inputRegisterPassword2.value){
             interface.mostrarAlerta('La contraseña no coincide','error',elementoPadre,e.target);
             nuevoUsuario[e.target.name] = '';
+            comprobarRegistro();
             return;
         } else{
             interface.mostrarAlerta('La contraseña coincide','correcto',elementoPadre,e.target);
@@ -280,7 +319,8 @@ function comprobarRegistro(){
     }
 }
 
-
+/*comienza el proceso de Registro una vez que todos los campos son llenados
+correctamente y se presiona el botón "Registrar" */
  function agregarNuevoUsuario(e){
     e.preventDefault();
     
@@ -315,6 +355,8 @@ function comprobarRegistro(){
 
  };
 
+ /*Una vez que se registra un usuario se vacia el objeto
+ para que asi pueda ser llenado para un nuevo registro */
 function limpiarObjeto(){
         //Limpiar objeto
         formularioRegistro.reset();
@@ -324,12 +366,14 @@ function limpiarObjeto(){
         delete nuevoUsuario.id;
 } 
 
+/*si existe alguna alerta en los inputs se limpian */
 function limpiarAlertas(){
     interface.limpiarAlerta(inputRegisterName.parentElement);
     interface.limpiarAlerta(inputRegisterEmail.parentElement);
     interface.limpiarAlerta(inputRegisterPassword2.parentElement);
 }
 
+/*Se manda a llamar para imprimir la lista de usuarios */
 function crearListaHTML(usuarios){
      interface.agregarListaHTML(usuarios);
     }
@@ -360,10 +404,48 @@ function editarUsuario(id){
     nuevoUsuario.id = id;
     comprobarRegistro();
 
-    btnRegistrarUsuario.classList.add('edicion');
     btnRegistrarUsuario.textContent = "Guardar Cambios";
 
     modoEdicion = true;
 
     //usuarioNuevoRegistrado.editarUsuarioExistente(id);
+}
+
+//INICIAMOS SESION
+
+function iniciarSesion(e){
+    e.preventDefault();
+
+    const email = inputLoginEmail.value;
+    const password = inputLoginPassword.value;
+
+    if(email.trim() === '' || password.trim() == ''){
+        interface.mostrarAlerta('Todos los campos son necesarios','loginError',document.querySelector('#formulario-iniciar .input-group'),'')
+        return;
+    } else if (!(validarEmail(email))){
+        interface.mostrarAlerta('Email no válido','loginError',document.querySelector('#formulario-iniciar .input-group'),'')
+        return;
+    }
+
+        const buscarUsuario = usuarioNuevoRegistrado.usuarios.find((usuario) => usuario.email === email);
+
+    if(!buscarUsuario){
+        interface.mostrarAlerta('Usuario no existe','loginError',document.querySelector('#formulario-iniciar .input-group'),'');
+        return;
+    } 
+        usuarioNuevoRegistrado.iniciarSesionUsuario(buscarUsuario,password);
+}
+
+function errorPassword(){
+    interface.mostrarAlerta('Contraseña incorrecta','loginError',document.querySelector('#formulario-iniciar .input-group'),'')
+    inputLoginPassword.value = '';
+    return;
+}
+
+function ingresoCorrecto(nombre){
+    primerNombre = nombre.split(' ')[0];
+    console.log('holas');
+    interface.mostrarAlerta(`${primerNombre} has ingresado correctamente`,'ingresoCorrecto',document.querySelector('#formulario-iniciar .input-group'),'');
+
+    formularioInicio.reset();
 }
